@@ -4,10 +4,10 @@ from django.db import models
 
 
 class Album(models.Model):
-    artist = models.CharField((""), max_length=50)
-    album_title = models.CharField((""), max_length=50)
-    genre = models.CharField((""), max_length=50)
-    album_logo = models.CharField((""), max_length=50)
+    artist = models.CharField(("Artist"), max_length=50)
+    album_title = models.CharField(("Album"), max_length=50)
+    genre = models.CharField(("Genre"), max_length=50)
+    album_logo = models.CharField(("Album logo"), max_length=50)
 
     def __str__(self):
         return self.album_title + " - " + self.artist
@@ -15,5 +15,8 @@ class Album(models.Model):
 
 class Song(models.Model):
     album = models.ForeignKey("Album", on_delete=models.CASCADE)
-    file_type = models.CharField((""), max_length=10)
-    song_title = models.CharField((""), max_length=50)
+    file_type = models.CharField(("File type"), max_length=10)
+    song_title = models.CharField(("Song title"), max_length=50)
+
+    def __str__(self):
+        return self.song_title
