@@ -1,11 +1,7 @@
 body {
-  background: white url("images/textureBG.jpg");
-}
-
-.navbar {
-  border-radius: 0;
+	background: white url("images/textureBG.jpg");
 }
 
 .navbar-brand {
-  font-family: Pacifico;
+	font-family: Pacifico;
 }

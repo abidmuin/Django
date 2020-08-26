@@ -1,7 +1,13 @@
+<!--adds the template from base.html-->
+{% extends 'music/base.html' %}
+<!--title block for each page-->
+{% block title%} Album details {% endblock %}
+<!--body template-->
+{%block body %}
 <img
-  src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-  width="350"
-  height="250"
+	src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+	width="350"
+	height="250"
 />
 <h1>{{ album.album_title }}</h1>
 <h3>{{ album.artist }}</h3>
@@ -12,22 +18,23 @@
 {% endif %}
 
 <form action="{% url 'music:favorite' album.id %}" method="POST">
-  {% csrf_token %} {% for song in album.song_set.all %}
-  <input
-    type="radio"
-    id="song {{ forloop.counter }}"
-    name="song"
-    value="{{ song.id }}"
-  />
-  <label for="song" {{ forloop.counter }}>
-    {{ song.song_title }} {% if song.is_favorite %}
-    <img
-      src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
-      width="12"
-      height="12"
-    />
-    {% endif %} </label
-  ><br />
-  {% endfor %}
-  <input type="submit" value="Favorite" />
+	{% csrf_token %} {% for song in album.song_set.all %}
+	<input
+		type="radio"
+		id="song {{ forloop.counter }}"
+		name="song"
+		value="{{ song.id }}"
+	/>
+	<label for="song" {{ forloop.counter }}>
+		{{ song.song_title }} {% if song.is_favorite %}
+		<img
+			src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/keditbookmarks.png"
+			width="12"
+			height="12"
+		/>
+		{% endif %} </label
+	><br />
+	{% endfor %}
+	<input type="submit" value="Favorite" />
 </form>
+{% endblock %}
