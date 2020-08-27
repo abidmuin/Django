@@ -5,10 +5,10 @@ python -m pip install Django
 django-admin --version
 
 #Creating new website
-django-admin startproject [Project name i.e demoWebsite]
+django-admin startproject [Project name i.e mysite]
 
 #Starting project server
-python demoWebsite\manage.py runserver
+python manage.py runserver
 
 #Creating new app
 python manage.py startapp [app name i.e music]
@@ -16,5 +16,10 @@ python manage.py startapp [app name i.e music]
 #Views
 for different apps, we should create separate "urls.py" to handle the use requests for that specific app.
 For example, to handle the requests for "music"app we need to create "urls.py" under the "music" app directory.
+
+#Database migrations
+python manage.py migrate
+
+
 
 
