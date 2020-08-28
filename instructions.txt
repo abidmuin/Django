@@ -10,16 +10,42 @@ django-admin startproject [Project name i.e mysite]
 #Starting project server
 python manage.py runserver
 
+#Running server in custom host and port
+python manage.py runserver 127.0.0.1:8001 \--settings=mysite.settings
+
 #Creating new app
-python manage.py startapp [app name i.e music]
+python manage.py startapp [app name i.e blog]
+
+#Activating apps
+Go to mysite\settings.py add "[apps_name].apps.[App]Config" in "INSTALLED_APPS"
+For example, "blog.apps.BlogConfig" here "BlogConfig" class is the application configuration which can be found in "apps.py"
+
+#Creating and applying migrations
+the 'migrate' command applies migrations for all applications listed in 'INSTALLED_APPS'; it
+synchronizes the database with the current models and existing migrations.
+1. initial migration for 'post' model
+python manage.py makemigrations blog
+2. SQL query of the above migration withou executing it
+python manage.py sqlmigrate blog (i.e app name) 0001 (i.e 0001_initial.py under migrations)
+
+#Sync your database with the new model after the migration:
+python manage.py migrate
+
+#Creating superuser i.e admin
+python manage.py createsuperuser
+
+#Adding models to the administration site
+add 'blog' models to the administration site.
+Edit the 'admin.py' file of the blog application like this -
+from django.contrib import admin
+from .models import Post
+admin.site.register(Post)
+@admin.register('model name here') to display customized model
+
+#Creating objects
+python manage.py shell
+
 
 #Views
 for different apps, we should create separate "urls.py" to handle the use requests for that specific app.
-For example, to handle the requests for "music"app we need to create "urls.py" under the "music" app directory.
-
-#Database migrations
-python manage.py migrate
-
-
-
-
+For example, to handle the requests for "blog"app we need to create "urls.py" under the "blog" app directory.
