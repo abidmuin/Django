@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Post
 
 # Register your models here.
+# ? This generates default view in admin panel
 # admin.site.register(Post)
 
 # ? Customizing model views
